@@ -1,0 +1,22 @@
+{
+    "localhost": {
+        "aiCoverContractFactory":"0x5FbDB2315678afecb367f032d93F642f64180aa3",
+        "aiCoverNFT":"0x5FbDB2315678afecb367f032d93F642f64180aa3" 
+    },
+    "mumbai": {
+        "aiCoverContractFactory":"0x6578B7714E59Cf60bCDc79158Cf899c41A1ed120",
+        "aiCoverNFT":"0x201d0f990554e2d736349b4b16eafcbd7dd8e9e0"
+    },
+    "amoy": {
+        "aiCoverContractFactory":"0xe1DD5C4ad3270cF1E8e3a37e3041E5d39cE7e751",
+        "aiCoverNFT":"0x201d0f990554e2d736349b4b16eafcbd7dd8e9e0"
+    },
+    "bsctestnet": {
+        "aiCoverContractFactory":"0xe1DD5C4ad3270cF1E8e3a37e3041E5d39cE7e751",
+        "aiCoverNFT":"0x52320dc1620fa8ff44aeca66eb7ffe2ddf08236a"
+    },
+    "mainnet": {
+        "aiCoverContractFactory":"",
+        "aiCoverNFT":""
+    }
+}
