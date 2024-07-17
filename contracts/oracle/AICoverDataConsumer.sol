@@ -14,6 +14,7 @@ contract AICoverDataConsumer {
     IOdfClient private oracle;
     string public coverName;
     int public playtime;
+    uint64 public numberOfRecords;
         
     //event EventResultStarted(string _name, string _symbol, string songId, string userId, string _songName, address contractAddress, address deployer);
     event EventResultStages(string _stage, uint256 _number);
@@ -55,20 +56,8 @@ contract AICoverDataConsumer {
     // request is fulfilled by some data provider
     function onResult(OdfResponse.Res memory result) external {
         emit EventResultStages("Started", 1);
-        emit EventResultOracle(msg.sender);
-        // Important: Make sure only the ODF oracle can supply you data
-        require(msg.sender == address(oracle), "Can only be called by oracle");
-        emit EventResultStages("After oracle check",2);
-        // We expect only one row: [province, totalCases]
         emit EventResultNumRecords(result.numRecords());
-        require(result.numRecords() == 1, "Expected one record");
-        emit EventResultStages("After after num record check",3);
-        
-        CborReader.CBOR[] memory record = result.record(0);
-        coverName = record[0].readString();
-        emit EventResultStages(coverName,4);
-        playtime = record[1].readInt();
-        emit EventResultStages(Strings.toString(playtime),5);
+        numberOfRecords = result.numRecords();
         emit EventResultStages("End",6);
     }
 }
