@@ -15,6 +15,9 @@
         "aiCoverContractFactory":"0xe1DD5C4ad3270cF1E8e3a37e3041E5d39cE7e751",
         "aiCoverNFT":"0x52320dc1620fa8ff44aeca66eb7ffe2ddf08236a"
     },
+    "sepolia": {
+        "aiCoverDataConsumer":"0x27b794d1Ca9100c36193DCD0F8275cC272C793D8"
+    },
     "mainnet": {
         "aiCoverContractFactory":"",
         "aiCoverNFT":""
