@@ -7,7 +7,12 @@ async function main() {
   console.log("Network = ",network.name);
 
   const AICoverDataConsumer:AICoverDataConsumer__factory = await ethers.getContractFactory("AICoverDataConsumer");
-  const aiCoverDataConsumer:AICoverDataConsumer = await AICoverDataConsumer.deploy("0xf1960569d1b4a23c34109d9341af6496ed90c0c3");
+  // Ethereum Sepolia Testnet
+  //const aiCoverDataConsumer:AICoverDataConsumer = await AICoverDataConsumer.deploy("0xf1960569d1b4a23c34109d9341af6496ed90c0c3");
+
+  //BNB Smart Chain Testnet
+  const aiCoverDataConsumer:AICoverDataConsumer = await AICoverDataConsumer.deploy("0x83857865971e941933dd36ebbf9475a867f67ca6");
+  
   await aiCoverDataConsumer.deployed();
 
   console.log("AICoverDataConsumer deployed to:", aiCoverDataConsumer.address);
