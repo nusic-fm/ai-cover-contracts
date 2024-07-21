@@ -17,7 +17,7 @@ contract AICoverDataConsumer {
     uint64 public numberOfRecords;
         
     //event EventResultStarted(string _name, string _symbol, string songId, string userId, string _songName, address contractAddress, address deployer);
-    event EventResultStages(string _stage, uint256 _number);
+    event EventResultStages(string _stage, int256 _number);
     event EventResultOracle(address _oracleAddress);
     event EventResultNumRecords(uint256 _numRecords);
 
@@ -58,6 +58,21 @@ contract AICoverDataConsumer {
         emit EventResultStages("Started", 1);
         emit EventResultNumRecords(result.numRecords());
         numberOfRecords = result.numRecords();
+
+        CborReader.CBOR[] memory record = result.record(0);
+        string memory voiceId = record[0].readString();
+        int256 playtimeTotal = record[1].readInt();
+        coverName = voiceId;
+        playtime = playtimeTotal;
+        emit EventResultStages("voiceID = 2",2);
+        emit EventResultStages(voiceId,3);
+        emit EventResultStages("playtimeTotal= 4",playtimeTotal);
+        //assertEq(voiceId, "lana-del-rey");
+        //assertEq(playtimeTotal, 6449);
+
         emit EventResultStages("End",6);
+
+
+        
     }
 }
