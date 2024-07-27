@@ -13,7 +13,13 @@
     },
     "bsctestnet": {
         "aiCoverContractFactory":"0xe1DD5C4ad3270cF1E8e3a37e3041E5d39cE7e751",
-        "aiCoverNFT":"0x52320dc1620fa8ff44aeca66eb7ffe2ddf08236a"
+        "aiCoverNFT":"0x52320dc1620fa8ff44aeca66eb7ffe2ddf08236a",
+        "aiCoverDataConsumer": "0x9dD5381aBf7CB8eBFF17cE7C15217c5aa6DFFF03",
+        "aiCoverManagerFactory":"0x8f7e8Eee23dCECf7054B6354C2e159BDD5f78352",
+        "aiVoiceNFTFactory": "0x10AE9e3fC4928fBB8B5479AB6aEDf42AAD9c6881",
+        "aiCoverManager": "0x678a190c7d819b4f51157c7158d390dd4dd70b1e",
+        "aiVoiceNFT": "",
+        "aiCoverToken": ""
     },
     "sepolia": {
         "aiCoverDataConsumer":"0x27b794d1Ca9100c36193DCD0F8275cC272C793D8"
