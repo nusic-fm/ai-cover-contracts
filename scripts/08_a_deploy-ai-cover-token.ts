@@ -8,7 +8,8 @@ async function main() {
   console.log("Network = ",network.name);
 
   const AICoverToken:AICoverToken__factory = await ethers.getContractFactory("AICoverToken");
-  const aiCoverToken:AICoverToken = await AICoverToken.deploy(owner.address, owner.address, owner.address);
+  //const aiCoverToken:AICoverToken = await AICoverToken.deploy(owner.address, owner.address, owner.address);
+  const aiCoverToken:AICoverToken = await AICoverToken.deploy();
   await aiCoverToken.deployed();
 
   console.log("AICoverToken deployed to:", aiCoverToken.address);
