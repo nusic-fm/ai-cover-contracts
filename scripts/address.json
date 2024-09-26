@@ -21,6 +21,17 @@
         "aiVoiceNFT": "",
         "aiCoverToken": ""
     },
+    "basetestnet": {
+        "aiCoverContractFactory":"0xe1DD5C4ad3270cF1E8e3a37e3041E5d39cE7e751",
+        "aiCoverNFT":"0x52320dc1620fa8ff44aeca66eb7ffe2ddf08236a",
+        "aiCoverDataConsumer": "0x9dD5381aBf7CB8eBFF17cE7C15217c5aa6DFFF03",
+        "aiCoverManagerFactory":"0x5c604329eBF64B84c01736b03018aa2591828AEA",
+        "aiVoiceNFTFactory": "0x8B06fBD5b63e7BAAB2f0c52B02eD96319CE392Fa",
+        "aiCoverManager": "0x6deebb9faae6b3d7592d3479c05a668daae420ed",
+        "aiVoiceNFT": "0x8f7b5a3eb5b5953cdd0e5588a81f82e91675b41d",
+        "aiCoverToken": "0x8949D245A2002F7b7f4dc7E59ef0A4969f0D0750",
+        "aiCoverTokenController": "0xc400d4ba3A3fA7fd94D0Af06Ac9A72bA66cc409e"
+    },
     "sepolia": {
         "aiCoverDataConsumer":"0x27b794d1Ca9100c36193DCD0F8275cC272C793D8"
     },
