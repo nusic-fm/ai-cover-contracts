@@ -4,28 +4,36 @@ pragma solidity ^0.8.17;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol";
-import "@openzeppelin/contracts/access/AccessControl.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "./AICoverToken.sol";
 
-contract AICoverTokenController is AccessControl {
-    bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
-    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+contract AICoverTokenController is Ownable {
 
     mapping(string => uint256) public totalEarnedByVoiceId;
     mapping(string => uint256) public currentHoldingsByVoiceId;
     address aiCoverTokenAddress;
 
+    address public minterAddress;
+    address public manager;
+
+    modifier onlyOwnerOrManager() {
+        require((owner() == msg.sender) || (manager == msg.sender), "Caller needs to be Owner or Manager");
+        _;
+    }
+
+    modifier onlyOwnerOrManagerOrMinter() {
+        require((owner() == msg.sender) || (manager == msg.sender) || (minterAddress == msg.sender), "Caller needs to be Owner or Manager or Minter");
+        _;
+    }
+
     event TokenMintedForVoice(string voiceId, uint256 amount, uint256 timestamp);
     event TokenWithdrawForVoice(address useAddress, string voiceId, uint256 amount, uint256 timestamp);
 
-    constructor(address tokenAddress_, address defaultAdmin, address pauser, address minter) {
-        _grantRole(DEFAULT_ADMIN_ROLE, defaultAdmin);
-        _grantRole(PAUSER_ROLE, pauser);
-        _grantRole(MINTER_ROLE, minter);
+    constructor(address tokenAddress_) {
         aiCoverTokenAddress = tokenAddress_;
     }
 
-    function mint(string memory voiceId, uint256 amount) public onlyRole(MINTER_ROLE){
+    function mint(string memory voiceId, uint256 amount) public onlyOwnerOrManagerOrMinter {
         totalEarnedByVoiceId[voiceId]+=amount;
         currentHoldingsByVoiceId[voiceId]+=amount;
         AICoverToken aiCoverToken = AICoverToken(aiCoverTokenAddress);
@@ -37,7 +45,7 @@ contract AICoverTokenController is AccessControl {
         require(currentHoldingsByVoiceId[voiceId]>0, "No Token to withdraw");
         AICoverToken aiCoverToken = AICoverToken(aiCoverTokenAddress);
         uint256 currentHoldings = currentHoldingsByVoiceId[voiceId];
-        aiCoverToken.transferFrom(address(this), msg.sender, currentHoldings);
+        aiCoverToken.transfer(msg.sender, currentHoldings);
         currentHoldingsByVoiceId[voiceId] = 0;
         emit TokenWithdrawForVoice(msg.sender, voiceId, currentHoldings, block.timestamp);
     }
